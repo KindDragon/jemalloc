@@ -55,6 +55,7 @@ any of the following arguments (not a definitive list) to 'configure':
     project's git repository.
 
 * `--with-rpath=<colon-separated-rpath>`
+
     Embed one or more library paths, so that libjemalloc can find the libraries
     it is linked to.  This works only on ELF-based systems.
 
@@ -90,17 +91,20 @@ any of the following arguments (not a definitive list) to 'configure':
     replace the "malloc", "calloc", etc. symbols.
 
 * `--without-export`
+
     Don't export public APIs.  This can be useful when building jemalloc as a
     static library, or to avoid exporting public APIs when using the zone
     allocator on OSX.
 
 * `--with-private-namespace=<prefix>`
+
     Prefix all library-private APIs with <prefix>je_.  For shared libraries,
     symbol visibility mechanisms prevent these symbols from being exported, but
     for static libraries, naming collisions are a real possibility.  By
     default, <prefix> is empty, which results in a symbol prefix of je_ .
 
 * `--with-install-suffix=<suffix>`
+
     Append <suffix> to the base name of all installed files, such that multiple
     versions of jemalloc can coexist in the same installation directory.  For
     example, libjemalloc.so.0 becomes libjemalloc<suffix>.so.0.
@@ -115,14 +119,17 @@ any of the following arguments (not a definitive list) to 'configure':
       --with-malloc-conf=decay_time:30
 
 * `--enable-debug`
+
     Enable assertions and validation code.  This incurs a substantial
     performance hit, but is very useful during application development.
 
 * `--disable-stats`
+
     Disable statistics gathering functionality.  See the "opt.stats_print"
     option documentation for usage details.
 
 * `--enable-prof`
+
     Enable heap profiling and leak detection functionality.  See the "opt.prof"
     option documentation for usage details.  When enabled, there are several
     approaches to backtracing, and the configure script chooses the first one
@@ -133,37 +140,46 @@ any of the following arguments (not a definitive list) to 'configure':
     + gcc intrinsics (unless --disable-prof-gcc)
 
 * `--enable-prof-libunwind`
+
     Use the libunwind library (http://www.nongnu.org/libunwind/) for stack
     backtracing.
 
 * `--disable-prof-libgcc`
+
     Disable the use of libgcc's backtracing functionality.
 
 * `--disable-prof-gcc`
+
     Disable the use of gcc intrinsics for backtracing.
 
 * `--with-static-libunwind=<libunwind.a>`
+
     Statically link against the specified libunwind.a rather than dynamically
     linking with -lunwind.
 
 * `--disable-fill`
+
     Disable support for junk/zero filling of memory.  See the "opt.junk" and
     "opt.zero" option documentation for usage details.
 
 * `--disable-zone-allocator`
+
     Disable zone allocator for Darwin.  This means jemalloc won't be hooked as
     the default allocator on OSX/iOS.
 
 * `--enable-utrace`
+
     Enable utrace(2)-based allocation tracing.  This feature is not broadly
     portable (FreeBSD has it, but Linux and OS X do not).
 
 * `--enable-xmalloc`
+
     Enable support for optional immediate termination due to out-of-memory
     errors, as is commonly implemented by "xmalloc" wrapper function for malloc.
     See the "opt.xmalloc" option documentation for usage details.
 
 * `--enable-lazy-lock`
+
     Enable code that wraps pthread_create() to detect when an application
     switches from single-threaded to multi-threaded mode, so that it can avoid
     mutex locking/unlocking operations while in single-threaded mode.  In
@@ -187,6 +203,7 @@ any of the following arguments (not a definitive list) to 'configure':
     syscall(2).
 
 * `--disable-cxx`
+
     Disable C++ integration.  This will cause new and delete operator
     implementations to be omitted.
 
@@ -196,6 +213,7 @@ any of the following arguments (not a definitive list) to 'configure':
     documentation.
 
 * `--with-lg-page=<lg-page>`
+
     Specify the base 2 log of the allocator page size, which must in turn be at
     least as large as the system page size.  By default the configure script
     determines the host's page size and sets the allocator page size equal to
@@ -217,6 +235,7 @@ any of the following arguments (not a definitive list) to 'configure':
     not explicitly support huge pages.
 
 * `--with-lg-quantum=<lg-quantum>`
+
     Specify the base 2 log of the minimum allocation alignment.  jemalloc needs
     to know the minimum alignment that meets the following C standard
     requirement (quoted from the April 12, 2011 draft of the C11 standard):
